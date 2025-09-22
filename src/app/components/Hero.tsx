@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import { CheckCircle2 } from 'lucide-react'
+import Image from 'next/image';
+import { CheckCircle2 } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -44,5 +44,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-'use client'
-import { useForm } from 'react-hook-form'
+'use client';
+import { useForm } from 'react-hook-form';
 
-type ServiceType = 'Residential' | 'Commercial' | 'Short-Term Rental'
+type ServiceType = 'Residential' | 'Commercial' | 'Short-Term Rental';
 
 interface LeadForm {
-  name: string
-  email: string
-  phone?: string
-  service: ServiceType
-  details: string
+  name: string;
+  email: string;
+  phone?: string;
+  service: ServiceType;
+  details: string;
 }
 
 export default function ContactForm() {
@@ -17,15 +17,14 @@ export default function ContactForm() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<LeadForm>()
+  } = useForm<LeadForm>();
 
   const onSubmit = async (data: LeadForm) => {
-    // If you wired /api/lead:
-    // await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-    console.log('Lead:', data)
-    alert("Thanks! We'll reach out ASAP.")
-    reset()
-  }
+    // If you wire an API: await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    console.log('Lead:', data);
+    alert("Thanks! We'll reach out ASAP.");
+    reset();
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="card p-6 grid gap-4">
@@ -91,5 +90,5 @@ export default function ContactForm() {
         By submitting, you agree to our friendly contact policy. No spam, ever.
       </p>
     </form>
-  )
+  );
 }
