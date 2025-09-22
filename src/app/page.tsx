@@ -1,103 +1,149 @@
-import Image from "next/image";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Section from "./components/Section";
+import ServiceCard from "./components/ServiceCard";
+import CTA from "./components/CTA";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
+import { Building2, Home as HomeIcon, Package, Sparkles, CheckCircle2 } from "lucide-react";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main>
+      <Header />
+      <Hero />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Services */}
+      <Section id="services">
+        <div className="grid md:grid-cols-3 gap-6">
+          <ServiceCard
+            icon={<HomeIcon className="h-5 w-5 text-brand-700" />}
+            title="Residential Cleaning"
+            desc="Recurring or one-time deep cleans with kitchens, baths, floors, and dusting handled."
+            items={["Standard & deep clean", "Move-in/out", "Eco-friendly supplies"]}
+          />
+          <ServiceCard
+            icon={<Building2 className="h-5 w-5 text-brand-700" />}
+            title="Commercial Cleaning"
+            desc="Offices, studios, and retail. After-hours options so your team stays focused."
+            items={["Trash & surfaces", "Restrooms & breakrooms", "Floors & glass"]}
+          />
+          <ServiceCard
+            icon={<Package className="h-5 w-5 text-brand-700" />}
+            title="Short-Term Rentals"
+            desc="Fast turnovers with hotel-level standards, linen service, and restock checklists."
+            items={["Laundry & linens", "Photo verification", "Damage notes"]}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </Section>
+
+      {/* Pricing */}
+      <Section id="pricing" className="section-muted">
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { name: "Standard", price: "$119+", points: ["1-2 bed", "Kitchen & bath", "Floors & surfaces"] },
+            { name: "Deep Clean", price: "$219+", points: ["Inside appliances", "Baseboards", "Detail focus"] },
+            { name: "STR Turnover", price: "$139+", points: ["Linen service", "Restock check", "Photo report"] },
+          ].map((t) => (
+            <div key={t.name} className="card p-6">
+              <span className="badge">{t.name}</span>
+              <h3 className="mt-2 text-3xl font-extrabold">{t.price}</h3>
+              <ul className="mt-4 grid gap-2 text-sm">
+                {t.points.map((p) => (
+                  <li key={p} className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-brand-700" /> {p}
+                  </li>
+                ))}
+              </ul>
+              <a href="#contact" className="btn btn-primary mt-6 w-full">
+                Get Exact Quote
+              </a>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* STR Highlights */}
+      <Section id="str">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-3xl font-extrabold">Short-Term Rental Turnovers</h2>
+            <p className="mt-3 text-neutral-600">
+              Fast, photo-verified cleans between guests. We handle linens, restocking, and checklists so your reviews stay glowing.
+            </p>
+            <ul className="mt-4 grid gap-2 text-sm">
+              {["Linen service & laundry", "Inventory & restock checks", "Damage notes with photos", "Staging for listings"].map(
+                (x) => (
+                  <li key={x} className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-brand-700" /> {x}
+                  </li>
+                )
+              )}
+            </ul>
+            <a href="#contact" className="btn btn-primary mt-6">
+              Turnover Quote
+            </a>
+          </div>
+          <div className="card p-6">
+            <h3 className="font-bold">Host-friendly Add-Ons</h3>
+            <ul className="mt-3 text-sm text-neutral-700 grid gap-2 list-disc list-inside">
+              <li>Starter toiletries pack</li>
+              <li>Coffee/tea bar setup</li>
+              <li>Mid-stay tidy (quick refresh)</li>
+              <li>Seasonal deep clean</li>
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* Testimonials */}
+      <Section>
+        <h2 className="text-3xl font-extrabold mb-6">People are low-key obsessed</h2>
+        <Testimonials />
+      </Section>
+
+      {/* CTA */}
+      <Section>
+        <CTA />
+      </Section>
+
+      {/* FAQ */}
+      <Section id="faq" className="section-muted">
+        <h2 className="text-3xl font-extrabold mb-6">FAQ</h2>
+        <FAQ />
+      </Section>
+
+      {/* Contact */}
+      <Section id="contact">
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 className="text-3xl font-extrabold">Let’s make it shine</h2>
+            <p className="mt-2 text-neutral-600">
+              Drop details about your home, office, or rental and we’ll send a fast, transparent quote.
+            </p>
+            <div className="mt-6">
+              <ContactForm />
+            </div>
+            <p className="mt-4 text-sm text-neutral-600">
+              Prefer to chat? Call{" "}
+              <a className="text-brand-700 font-semibold" href="tel:+15551234567">
+                (555) 123-4567
+              </a>
+            </p>
+          </div>
+          <div className="card p-6">
+            <h3 className="font-bold">Service Area</h3>
+            <p className="mt-2 text-sm text-neutral-600">Your City and surrounding neighborhoods. Same-day slots often available.</p>
+            <div className="mt-4 aspect-video rounded-xl bg-neutral-100 flex items-center justify-center">Map placeholder</div>
+            <h4 className="mt-6 font-semibold">Hours</h4>
+            <p className="text-sm text-neutral-600">Mon–Sat: 8am–6pm • Sun: by appointment</p>
+          </div>
+        </div>
+      </Section>
+
+      <Footer />
+    </main>
   );
 }
