@@ -1,3 +1,4 @@
+// src/app/components/Section.tsx
 import { ReactNode } from "react";
 import clsx from "clsx";
 
@@ -16,7 +17,6 @@ export default function Section({
       id={id}
       className={clsx(
         "section",
-        // slam-dunk the background so alternation always shows
         isMuted ? "bg-[#e5e7eb]" : "bg-white",
         className
       )}
