@@ -70,7 +70,7 @@ export default function Page() {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl font-extrabold">Short-Term Rental Turnovers</h2>
-            <p className="mt-3 text-neutral-600">
+            <p className="mt-3 text-default">
               Fast, photo-verified cleans between guests. We handle linens, restocking, and checklists so your reviews stay glowing.
             </p>
             <ul className="mt-4 grid gap-2 text-sm">
@@ -120,13 +120,13 @@ export default function Page() {
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           <div>
             <h2 className="text-3xl font-extrabold">Let’s make it shine</h2>
-            <p className="mt-2 text-neutral-600">
+            <p className="mt-2 text-default">
               Drop details about your home, office, or rental and we’ll send a fast, transparent quote.
             </p>
             <div className="mt-6">
               <ContactForm />
             </div>
-            <p className="mt-4 text-sm text-neutral-600">
+            <p className="mt-4 text-sm text-default">
               Prefer to chat? Call{" "}
               <a className="text-brand-700 font-semibold" href="tel:+15551234567">
                 (555) 123-4567
@@ -135,10 +135,10 @@ export default function Page() {
           </div>
           <div className="card p-6">
             <h3 className="font-bold">Service Area</h3>
-            <p className="mt-2 text-sm text-neutral-600">Your City and surrounding neighborhoods. Same-day slots often available.</p>
+            <p className="mt-2 text-sm text-default">Your City and surrounding neighborhoods. Same-day slots often available.</p>
             <div className="mt-4 aspect-video rounded-xl bg-neutral-100 flex items-center justify-center">Map placeholder</div>
             <h4 className="mt-6 font-semibold">Hours</h4>
-            <p className="text-sm text-neutral-600">Mon–Sat: 8am–6pm • Sun: by appointment</p>
+            <p className="text-sm text-default">Mon–Sat: 8am–6pm • Sun: by appointment</p>
           </div>
         </div>
       </Section>

@@ -1,10 +1,27 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
+import clsx from "clsx";
 
-
-export default function Section({ id, className = '', children }: { id?: string, className?: string, children: ReactNode }) {
-    return (
-        <section id={id} className={`section ${className}`.trim()}>
-            <div className="container">{children}</div>
-        </section>
-    )
+export default function Section({
+  id,
+  className = "",
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  const isMuted = className?.includes("section-muted");
+  return (
+    <section
+      id={id}
+      className={clsx(
+        "section",
+        // slam-dunk the background so alternation always shows
+        isMuted ? "bg-[#e5e7eb]" : "bg-white",
+        className
+      )}
+    >
+      <div className="container">{children}</div>
+    </section>
+  );
 }

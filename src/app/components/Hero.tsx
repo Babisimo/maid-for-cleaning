@@ -8,17 +8,17 @@ export default function Hero() {
       <div className="container grid lg:grid-cols-2 gap-10 items-center py-24">
         <div>
           <span className="badge mb-4">Residential • Commercial • Short-Term Rentals</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-black">
             Clean that feels <span className="text-brand-700">brand new</span> — every time
           </h1>
-          <p className="mt-4 text-neutral-700 text-lg">
+          <p className="mt-4 text-lg text-black">
             Book lightning-fast scheduling with vetted cleaners, flexible plans, and five-star results. No stress, just sparkle.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3 text-black">
             <a href="#contact" className="btn btn-primary">Get an Instant Quote</a>
             <a href="#services" className="btn btn-outline">See Services</a>
           </div>
-          <ul className="mt-6 grid gap-2 text-sm text-neutral-800">
+          <ul className="mt-6 grid gap-2 text-sm text-brand-700">
             {['Supplies included','Insured & background-checked','Satisfaction guarantee'].map(t => (
               <li className="flex items-center gap-2" key={t}>
                 <CheckCircle2 className="h-4 w-4 text-brand-700"/>{t}
@@ -29,7 +29,8 @@ export default function Hero() {
 
         <div className="relative">
           <Image
-            src="/hero.jpg"
+            // src="/hero.jpg"
+            src="/logo.jpeg"
             alt="Spotless kitchen"
             width={1280}
             height={960}
@@ -37,8 +38,8 @@ export default function Hero() {
             priority
           />
           <div className="absolute -bottom-6 -left-6 bg-white border border-neutral-100 shadow-soft rounded-2xl p-4">
-            <p className="text-sm">
-              <span className="font-semibold">450+ cleans</span> this year • 4.9/5 rating
+            <p className="text-sm text-black">
+              <span className="text-brand-700 font-semibold">450+ cleans</span> this year • 4.9/5 rating
             </p>
           </div>
         </div>

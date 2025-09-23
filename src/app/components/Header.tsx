@@ -9,18 +9,18 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-100">
       <div className="container flex items-center justify-between py-3">
         <a href="#home" className="flex items-center gap-3">
-          <Image
+          {/* <Image
             src="/logo.jpeg"
             alt="Maid for Cleaning LLC"
             width={32}
             height={32}
             priority
             className="h-8 w-8"
-          />
-          <span className="font-extrabold text-neutral-900">Maid for Cleaning LLC</span>
+          /> */}
+          <span className="font-extrabold text-brand-500">Maid for Cleaning LLC</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm">
+        <nav className="hidden md:flex items-center gap-6 text-sm text-brand-900">
           <a href="#services" className="hover:text-brand-700">Services</a>
           <a href="#pricing" className="hover:text-brand-700">Pricing</a>
           <a href="#str" className="hover:text-brand-700">Short-Term Rentals</a>
@@ -28,7 +28,7 @@ export default function Header() {
           <a href="#contact" className="hover:text-brand-700">Contact</a>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 text-white">
           <a href="#contact" className="btn btn-outline">Get a Quote</a>
           <a href="tel:+15551234567" className="btn btn-primary">
             <Phone className="h-4 w-4" /> (555) 123-4567

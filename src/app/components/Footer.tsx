@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container py-10 grid md:grid-cols-3 gap-8 text-sm">
         <div>
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Maid for Cleaning LLC" width={24} height={24} />
+            <Image src="/logo.jpeg" alt="Maid for Cleaning LLC" width={24} height={24} />
             <strong>Maid for Cleaning LLC</strong>
           </div>
           <p className="mt-3 text-neutral-700">

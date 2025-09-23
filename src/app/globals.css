@@ -3,25 +3,25 @@
 
 /* ========= Design Tokens ========= */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a; /* darker slate for better contrast */
-  --brand: #0061af;      /* your blue */
+  --background: #ffffff;  /* page bg */
+  --foreground: #0f172a;  /* slate-900 */
+  --brand:      #0061af;  /* your blue */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1220;
+    --foreground: #e5e7eb;
   }
 }
 
-/* Tailwind v4 theme inline (optional but nice) */
+/* ========= Tailwind v4 Theme (CSS-first) ========= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Brand scale (used by our classes like bg-brand-700 via @apply) */
-  --color-brand-50: #eaf3fb;
+  /* Brand scale */
+  --color-brand-50:  #eaf3fb;
   --color-brand-100: #d7e8f8;
   --color-brand-200: #a9cdef;
   --color-brand-300: #7bb2e6;
@@ -32,19 +32,16 @@
   --color-brand-800: #044e8c;
   --color-brand-900: #073b69;
 
-  /* Fonts (keep Next’s defaults if you wired Geist) */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
-  /* Shadow */
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 /* ========= Base ========= */
-html,
-body {
-  height: 100%;
-}
+html, body { height: 100%; }
+html { scroll-behavior: smooth; }
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -53,82 +50,80 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ========= App Utilities (used by components) ========= */
-.container {
-  max-width: 80rem;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-}
+/* ========= Layout & UI Helpers ========= */
+.container { max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
 
 .card {
-  border-radius: 1rem; /* ~rounded-2xl */
+  border-radius: 1rem;
   background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgb(240 240 240);
+  color: #0f172a;
 }
+.card p, .card li { color: #1f2937; }
 
+/* ========= Sections (explicit alternation + readable text) ========= */
+/* Default section: WHITE */
 .section {
   padding-block: 5rem;
-}
-.section-muted {
-  padding-block: 5rem;
-  background: rgb(250 250 250);
+  background: #ffffff;
+  --on-surface:  #0f172a;  /* headings */
+  --muted-text:  #1f2937;  /* body */
+  color: var(--on-surface);
 }
 
+/* Alternating section: higher-contrast GRAY */
+.section-muted {
+  padding-block: 5rem;
+  background: #e5e7eb;     /* neutral-200 (more obvious than -100) */
+  --on-surface:  #0b1220;
+  --muted-text:  #111827;
+  color: var(--on-surface);
+}
+
+/* If both classes end up present, muted wins */
+.section.section-muted { background: #e5e7eb !important; }
+
+/* Inherit within sections */
+.section h1,
+.section h2,
+.section h3,
+.section h4,
+.section h5,
+.section h6,
+.section .heading { color: var(--on-surface); }
+
+.section p,
+.section li,
+.section .body { color: var(--muted-text); }
+
+/* Helpers to force color if needed */
+.text-default { color: var(--muted-text) !important; }
+.text-strong  { color: var(--on-surface) !important; }
+
+/* Badges */
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
+  display: inline-flex; align-items: center; gap: .375rem;
   border-radius: 9999px;
   background: rgb(245 245 245);
-  color: rgb(97 97 97);
-  font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  color: var(--muted-text, #1f2937);
+  font-size: .75rem; padding: .25rem .75rem;
 }
 
 /* Buttons */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-flex; align-items: center; gap: .5rem;
   border-radius: 1rem;
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: transform 0.05s ease, background 0.2s ease, color 0.2s ease;
+  padding: .75rem 1.25rem;
+  font-weight: 600; font-size: .875rem;
+  transition: transform .05s ease, background .2s ease, color .2s ease;
   box-shadow: var(--shadow-soft);
 }
+.btn-primary { background: var(--color-brand-700); color: #fff; }
+.btn-primary:hover { background: var(--color-brand-600); }
+.btn-primary:active { transform: scale(0.99); }
+.btn-outline { border: 1px solid rgb(229 229 229); }
+.btn-outline:hover { background: rgb(250 250 250); }
 
-.btn-primary {
-  background: var(--color-brand-700);
-  color: white;
-}
-.btn-primary:hover {
-  background: var(--color-brand-600);
-}
-.btn-primary:active {
-  transform: scale(0.99);
-}
-
-.btn-outline {
-  border: 1px solid rgb(229 229 229);
-}
-.btn-outline:hover {
-  background: rgb(250 250 250);
-}
-
-/* Helpers */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Add near the bottom of globals.css */
-p, .prose, .text-default { color: #1f2937; } /* neutral-800 */
-
+/* Media */
+img { max-width: 100%; height: auto; display: block; }

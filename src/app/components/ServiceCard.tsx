@@ -8,9 +8,9 @@ export default function ServiceCard({ icon, title, desc, items }: { icon: ReactN
                 <div className="h-10 w-10 rounded-xl bg-brand-50 flex items-center justify-center">{icon}</div>
                 <h3 className="text-lg font-bold">{title}</h3>
             </div>
-            <p className="mt-3 text-sm text-neutral-600">{desc}</p>
+            <p className="mt-3 text-sm text-default">{desc}</p>
             {items && (
-                <ul className="mt-4 text-sm grid gap-1 list-disc list-inside text-neutral-700">
+                <ul className="mt-4 text-sm grid gap-1 list-disc list-inside text-default">
                     {items.map(x => <li key={x}>{x}</li>)}
                 </ul>
             )}
