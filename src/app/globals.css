@@ -5,9 +5,13 @@
 :root {
   --background: #ffffff;  /* page bg */
   --foreground: #0f172a;  /* slate-900 */
-  --brand:      #0061af;  /* your blue */
+  --brand:      #0061AF;  /* exact brand blue */
+
+  /* sticky header sizing + anchor offset */
+  --header-h: 64px;
 }
 
+/* optional dark mode base */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0b1220;
@@ -20,7 +24,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Brand scale */
+  /* Brand scale (primary at 700 = #0061AF) */
   --color-brand-50:  #eaf3fb;
   --color-brand-100: #d7e8f8;
   --color-brand-200: #a9cdef;
@@ -28,19 +32,21 @@
   --color-brand-400: #4d97dd;
   --color-brand-500: #287fce;
   --color-brand-600: #0f6bbf;
-  --color-brand-700: #0061af;
+  --color-brand-700: #0061AF; /* exact */
   --color-brand-800: #044e8c;
   --color-brand-900: #073b69;
 
+  /* Fonts */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
+  /* Shadows */
   --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 /* ========= Base ========= */
 html, body { height: 100%; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
 
 body {
   background: var(--background);
@@ -62,54 +68,6 @@ body {
 }
 .card p, .card li { color: #1f2937; }
 
-/* ========= Sections (explicit alternation + readable text) ========= */
-/* Default section: WHITE */
-.section {
-  padding-block: 5rem;
-  background: #ffffff;
-  --on-surface:  #0f172a;  /* headings */
-  --muted-text:  #1f2937;  /* body */
-  color: var(--on-surface);
-}
-
-/* Alternating section: higher-contrast GRAY */
-.section-muted {
-  padding-block: 5rem;
-  background: #e5e7eb;     /* neutral-200 (more obvious than -100) */
-  --on-surface:  #0b1220;
-  --muted-text:  #111827;
-  color: var(--on-surface);
-}
-
-/* If both classes end up present, muted wins */
-.section.section-muted { background: #e5e7eb !important; }
-
-/* Inherit within sections */
-.section h1,
-.section h2,
-.section h3,
-.section h4,
-.section h5,
-.section h6,
-.section .heading { color: var(--on-surface); }
-
-.section p,
-.section li,
-.section .body { color: var(--muted-text); }
-
-/* Helpers to force color if needed */
-.text-default { color: var(--muted-text) !important; }
-.text-strong  { color: var(--on-surface) !important; }
-
-/* Badges */
-.badge {
-  display: inline-flex; align-items: center; gap: .375rem;
-  border-radius: 9999px;
-  background: rgb(245 245 245);
-  color: var(--muted-text, #1f2937);
-  font-size: .75rem; padding: .25rem .75rem;
-}
-
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -124,6 +82,80 @@ body {
 .btn-primary:active { transform: scale(0.99); }
 .btn-outline { border: 1px solid rgb(229 229 229); }
 .btn-outline:hover { background: rgb(250 250 250); }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: .375rem;
+  border-radius: 9999px;
+  background: rgb(245 245 245);
+  color: #1f2937;
+  font-size: .75rem; padding: .25rem .75rem;
+}
+
+/* ========= Sections (white / blue alternation with auto text) ========= */
+/* Base white section */
+.section {
+  padding-block: 5rem;
+  background: #ffffff;
+  --on-surface:  #0f172a;  /* headings */
+  --muted-text:  #1f2937;  /* body */
+  color: var(--on-surface);
+}
+
+/* Blue section */
+.section-blue {
+  padding-block: 5rem;
+  background: #0061AF;                 /* exact brand blue */
+  --on-surface:  #ffffff;               /* headings on blue */
+  --muted-text:  rgba(255,255,255,.92); /* body on blue */
+  color: var(--on-surface);
+}
+
+/* If both classes appear, blue wins */
+.section.section-blue { background: #0061AF !important; }
+
+/* Section-aware typography */
+.section h1,
+.section h2,
+.section h3,
+.section h4,
+.section h5,
+.section h6,
+.section .heading { color: var(--on-surface); }
+
+.section p,
+.section li,
+.section .body { color: var(--muted-text); }
+
+/* Cards inside blue stay readable as floating white cards */
+.section-blue .card {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(255,255,255,.18);
+}
+.section-blue .card p,
+.section-blue .card li { color: #1f2937; }
+
+/* Links on blue look clickable */
+.section-blue a { color: #ffffff; }
+.section-blue a:hover { color: #e6f0ff; }
+
+/* Outline buttons on blue */
+.section-blue .btn-outline {
+  border-color: rgba(255,255,255,.35);
+  color: #fff;
+}
+.section-blue .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+/* Helpers to force color if needed */
+.text-default { color: var(--muted-text) !important; }
+.text-strong  { color: var(--on-surface) !important; }
+
+/* ========= Header spacing fix (tighten first section under sticky header) ========= */
+header + main .section:first-child { padding-top: 2.5rem; }
+@media (min-width: 768px) {
+  header + main .section:first-child { padding-top: 3rem; }
+}
 
 /* Media */
 img { max-width: 100%; height: auto; display: block; }

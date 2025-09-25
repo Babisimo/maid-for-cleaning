@@ -1,33 +1,57 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-100">
-      <div className="container py-10 grid md:grid-cols-3 gap-8 text-sm">
-        <div>
-          <div className="flex items-center gap-2">
-            <Image src="/logo.jpeg" alt="Maid for Cleaning LLC" width={24} height={24} />
-            <strong>Maid for Cleaning LLC</strong>
+    <footer className="bg-neutral-900 text-neutral-200">
+      <div className="container py-8">
+        {/* Top row */}
+        <div className="grid gap-6 md:grid-cols-5 items-start">
+          {/* Brand / blurb (span 2 cols on md+) */}
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.jpeg"
+                alt="Maid for Cleaning LLC"
+                width={22}
+                height={22}
+                className="rounded-sm"
+              />
+              <strong className="text-neutral-100">Maid for Cleaning LLC</strong>
+            </div>
+            <p className="mt-2 text-sm text-neutral-300">
+              Residential, commercial, and short-term rental cleaning. Licensed &amp; insured.
+            </p>
           </div>
-          <p className="mt-3 text-neutral-700">
-            Residential, commercial, and short-term rental cleaning. Licensed &amp; insured.
-          </p>
+
+          {/* Links (3 skinny columns) */}
+          <nav className="md:col-span-2 grid grid-cols-3 gap-4 text-sm">
+            <ul className="space-y-1">
+              <li><a href="#services" className="text-neutral-300 hover:text-white">Services</a></li>
+              <li><a href="#pricing"  className="text-neutral-300 hover:text-white">Pricing</a></li>
+            </ul>
+            <ul className="space-y-1">
+              <li><a href="#str"      className="text-neutral-300 hover:text-white">STR Turnovers</a></li>
+              <li><a href="#faq"      className="text-neutral-300 hover:text-white">FAQ</a></li>
+            </ul>
+            <ul className="space-y-1">
+              <li><a href="#policies" className="text-neutral-300 hover:text-white">Policies</a></li>
+              <li><a href="#contact"  className="text-neutral-300 hover:text-white">Contact</a></li>
+            </ul>
+          </nav>
+
+          {/* Contact (solo column) */}
+          <div className="md:justify-self-end text-sm">
+            <p className="text-neutral-300">hello@maidforcleaning.com</p>
+            <p className="text-neutral-300">(555) 123-4567</p>
+            <p className="text-neutral-300">Your City, ST</p>
+          </div>
         </div>
-        <nav className="grid gap-2">
-          <a href="#services" className="hover:text-brand-700">Services</a>
-          <a href="#pricing" className="hover:text-brand-700">Pricing</a>
-          <a href="#str" className="hover:text-brand-700">STR Turnovers</a>
-          <a href="#contact" className="hover:text-brand-700">Contact</a>
-        </nav>
-        <div className="grid gap-2">
-          <p>hello@maidforcleaning.com</p>
-          <p>(555) 123-4567</p>
-          <p>Your City, ST</p>
-        </div>
-      </div>
-      <div className="border-t border-neutral-100">
-        <div className="container py-6 text-xs text-neutral-500">
-          © {new Date().getFullYear()} Maid for Cleaning LLC. All rights reserved.
+
+        {/* Bottom bar */}
+        <div className="mt-6 border-t border-neutral-800">
+          <div className="py-4 text-xs text-neutral-400">
+            © {new Date().getFullYear()} Maid for Cleaning LLC. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>

@@ -11,8 +11,8 @@ export default function FAQ() {
         <div className="grid md:grid-cols-2 gap-6">
             {faqs.map((f) => (
                 <div key={f.q} className="card p-6">
-                    <h4 className="font-semibold">{f.q}</h4>
-                    <p className="mt-2 text-sm text-default">{f.a}</p>
+                    <h4 className="font-semibold text-neutral-700">{f.q}</h4>
+                    <p className="mt-2 text-sm text-neutral-500">{f.a}</p>
                 </div>
             ))}
         </div>
