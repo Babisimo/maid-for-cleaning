@@ -1,20 +1,20 @@
 const faqs = [
-    { q: 'Do you bring supplies?', a: 'Yes! We bring eco‑friendly supplies and equipment. Let us know about any sensitivities.' },
-    { q: 'Are you insured?', a: 'Absolutely. Fully insured with background‑checked cleaners.' },
-    { q: 'Do you do Airbnb/STR turnovers?', a: 'Yes, with linen service, photo verification, and restock checklists.' },
-    { q: 'How do quotes work?', a: 'Share your space details; we give a transparent, flat‑rate or hourly quote—your choice.' }
+    { q: 'Do you bring supplies?', a: 'Yes. We bring eco-friendly supplies and equipment. Let us know about any sensitivities.' },
+    { q: 'Are you insured?', a: 'Yes. We are fully insured, and every cleaner is background-checked.' },
+    { q: 'Do you clean short-term rentals?', a: 'Yes. Airbnb and other rental turnovers include linen service, photo verification, and restock checklists.' },
+    { q: 'How do quotes work?', a: 'Share details about your space and we send a transparent quote, flat-rate or hourly, whichever you prefer.' }
 ]
 
 
 export default function FAQ() {
     return (
-        <div className="grid md:grid-cols-2 gap-6">
+        <dl className="grid gap-x-14 gap-y-7 md:grid-cols-2">
             {faqs.map((f) => (
-                <div key={f.q} className="card p-6">
-                    <h4 className="font-semibold text-neutral-700">{f.q}</h4>
-                    <p className="mt-2 text-sm text-neutral-500">{f.a}</p>
+                <div key={f.q} className="border-t border-line pt-5">
+                    <dt className="font-display text-lg font-bold text-ink sm:text-xl">{f.q}</dt>
+                    <dd className="mt-1.5 text-ink-soft">{f.a}</dd>
                 </div>
             ))}
-        </div>
+        </dl>
     )
 }
