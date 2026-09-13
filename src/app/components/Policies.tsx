@@ -1,213 +1,243 @@
 import Accordion, { AccordionItem } from "./Accordion";
 
-function UL(props: { children: React.ReactNode }) {
-  return <ul className="list-disc list-inside space-y-1">{props.children}</ul>;
+function List({ items }: { items: string[] }) {
+  return (
+    <ul className="list-disc space-y-1.5 pl-5 marker:text-brand">
+      {items.map(item => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
 }
 
-export default function Policies() {
-  const policyItems: AccordionItem[] = [
-    {
-      title: "Booking & Scheduling",
-      content: (
-        <UL>
-          <li>Cleanings can be scheduled up to 24 hours in advance. Bookings within 24 hours incur a rush fee.</li>
-          <li>All new customers must get a deep clean to “reset” the home before general upkeep cleanings.</li>
-          <li>$50 deposit due at booking.</li>
-        </UL>
-      ),
-      defaultOpen: true,
-    },
-    {
-      title: "Cancellations & Rescheduling",
-      content: (
-        <UL>
-          <li>48-hour notice required for any cancellation or rescheduling.</li>
-          <li>No-shows or late cancellations will forfeit the $50 deposit.</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Payments & Fees",
-      content: (
-        <UL>
-          <li>Payment is due upon service completion unless arranged differently prior to cleaning.</li>
-          <li>We accept Credit/Debit Cards and Checks (no cash).</li>
-          <li>Payments not made within 24 hours of invoice will be charged a $10 fee.</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Access to Property",
-      content: (
-        <>
-          <p className="mb-2">Access must be arranged during booking. Options include:</p>
-          <UL>
-            <li>Client present at arrival</li>
-            <li>Key provided</li>
-            <li>Lockbox</li>
-          </UL>
-          <p className="mt-2">Not responsible for cleaning delays due to inaccessible property.</p>
-        </>
-      ),
-    },
-    {
-      title: "Satisfaction Guaranteed",
-      content: (
-        <UL>
-          <li>Report any dissatisfaction/issues within 24 hours after cleaning (photo proof required).</li>
-          <li>Re-cleans are offered. We do not provide refunds or discounts.</li>
-          <li>Please do not clean or attempt to fix our mistake; we will fix it in a timely manner.</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Damage Policy",
-      content: (
-        <UL>
-          <li>Report any damage within 24 hours after cleaning is completed (photo proof required).</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Safety & Health",
-      content: (
-        <UL>
-          <li>We do not clean properties with rodents, pests, hazardous materials, or biohazards unless agreed in advance.</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Pet Policy",
-      content: (
-        <UL>
-          <li>Pets must be securely put away before cleaners arrive.</li>
-          <li>We are not responsible for pets escaping due to unsecured areas.</li>
-        </UL>
-      ),
-    },
-    {
-      title: "Custom Requests",
-      content: (
-        <UL>
-          <li>Add-on services not included in standard scopes must be requested at booking and will incur extra charges.</li>
-        </UL>
-      ),
-    },
-  ];
+type RoomScope = { room: string; tasks: string[] };
 
-  const servicesItems: AccordionItem[] = [
-    {
-      title: "Move-In/Out Cleaning — $100/hr",
-      content: (
-        <>
-          <h5 className="font-semibold mb-1">All Rooms</h5>
-          <UL>
-            <li>Dust/Wipe ceiling fans, window ledges, furniture, blinds, baseboards</li>
-            <li>Empty trash cans; Vacuum/Mop floors</li>
-            <li>Wipe inside windowsill; Dust/Wash vents</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Kitchen</h5>
-          <UL>
-            <li>Countertops; Appliance exteriors</li>
-            <li>Deep scrub sink and faucet</li>
-            <li>Wipe cabinets interior/exterior</li>
-            <li>Deep scrub stove interior/exterior</li>
-            <li>Microwave interior/exterior</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bathrooms</h5>
-          <UL>
-            <li>Deep scrub shower and tub; Deep clean toilet</li>
-            <li>Cabinets interior/exterior; Vanity mirrors interior/exterior</li>
-            <li>Wipe mirrors/glass; Dust/Wash exhaust</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bedrooms</h5>
-          <UL>
-            <li>Dust/Wipe furniture/shelves & blinds</li>
-            <li>Make bed</li>
-          </UL>
-          <p className="mt-2 text-xs text-default">(Special requests available for an extra charge.)</p>
-        </>
-      ),
-      defaultOpen: true,
-    },
-    {
-      title: "Deep Home Cleaning — $100/hr",
-      content: (
-        <>
-          <h5 className="font-semibold mb-1">All Rooms</h5>
-          <UL>
-            <li>Dust/Wipe ceiling fans, window ledges, furniture, blinds, baseboards</li>
-            <li>Empty trash cans; Vacuum/Mop floors</li>
-            <li>Vacuum between couches & lint roll</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Kitchen</h5>
-          <UL>
-            <li>Countertops; Appliance exteriors</li>
-            <li>Deep scrub sink and faucet</li>
-            <li>Wipe cabinets interior/exterior</li>
-            <li>Deep scrub stove interior/exterior</li>
-            <li>Microwave interior/exterior</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bathrooms</h5>
-          <UL>
-            <li>Deep scrub shower and tub; Deep clean toilet</li>
-            <li>Cabinets interior/exterior</li>
-            <li>Vanity mirrors interior/exterior; Wipe mirrors/glass</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bedrooms</h5>
-          <UL>
-            <li>Dust/Wipe furniture/shelves & blinds</li>
-            <li>Make bed</li>
-          </UL>
-          <p className="mt-2 text-xs text-default">(Special requests available for an extra charge.)</p>
-        </>
-      ),
-    },
-    {
-      title: "General Home Cleaning — Based on SQFT & Frequency",
-      content: (
-        <>
-          <h5 className="font-semibold mb-1">All Rooms</h5>
-          <UL>
-            <li>Dust ceiling fans, window ledges, furniture, blinds</li>
-            <li>Empty trash cans; Vacuum/Mop floors</li>
-            <li>Vacuum between couches & lint roll</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Kitchen</h5>
-          <UL>
-            <li>Countertops; Appliance exteriors</li>
-            <li>Deep scrub sink and faucet</li>
-            <li>Wipe cabinets exterior</li>
-            <li>Deep scrub stove interior/exterior</li>
-            <li>Microwave interior/exterior</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bathrooms</h5>
-          <UL>
-            <li>Deep scrub shower and tub; Deep clean toilet</li>
-            <li>Cabinets exterior; Vanity mirror exterior</li>
-            <li>Wipe mirrors/glass</li>
-          </UL>
-          <h5 className="font-semibold mt-3 mb-1">Bedrooms</h5>
-          <UL>
-            <li>Dust furniture/shelves & blinds</li>
-            <li>Make bed</li>
-          </UL>
-          <p className="mt-2 text-xs text-default">(Special requests available for an extra charge.)</p>
-        </>
-      ),
-    },
-  ];
-
+function Scope({ rooms }: { rooms: RoomScope[] }) {
   return (
-    <div className="grid lg:grid-cols-2 gap-8">
-      <div>
-        <h3 className="text-xl font-bold mb-3">Policies</h3>
-        <Accordion items={policyItems} allowMultiple />
+    <>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {rooms.map(r => (
+          <div key={r.room}>
+            <h4 className="mb-2 text-[0.9375rem] font-bold">{r.room}</h4>
+            <List items={r.tasks} />
+          </div>
+        ))}
       </div>
-      <div>
-        <h3 className="text-xl font-bold mb-3">Service Details</h3>
-        <Accordion items={servicesItems} allowMultiple />
-      </div>
+      <p className="mt-4 text-sm">Special requests are available for an extra charge.</p>
+    </>
+  );
+}
+
+const policyItems: AccordionItem[] = [
+  {
+    title: "Booking and scheduling",
+    content: (
+      <List
+        items={[
+          "Cleanings can be scheduled up to 24 hours in advance. Bookings within 24 hours incur a rush fee.",
+          "All new customers get a deep clean to reset the home before regular upkeep cleanings.",
+          "A $50 deposit is due at booking.",
+        ]}
+      />
+    ),
+    defaultOpen: true,
+  },
+  {
+    title: "Cancellations and rescheduling",
+    content: (
+      <List
+        items={[
+          "48-hour notice is required for any cancellation or rescheduling.",
+          "No-shows or late cancellations forfeit the $50 deposit.",
+        ]}
+      />
+    ),
+  },
+  {
+    title: "Payments and fees",
+    content: (
+      <List
+        items={[
+          "Payment is due when the service is complete, unless arranged differently before the cleaning.",
+          "We accept credit/debit cards and checks (no cash).",
+          "Payments not made within 24 hours of the invoice are charged a $10 fee.",
+        ]}
+      />
+    ),
+  },
+  {
+    title: "Access to your property",
+    content: (
+      <>
+        <p className="mb-2">Access is arranged during booking. Options include:</p>
+        <List items={["Client present at arrival", "Key provided", "Lockbox"]} />
+        <p className="mt-2">We are not responsible for cleaning delays caused by an inaccessible property.</p>
+      </>
+    ),
+  },
+  {
+    title: "Satisfaction guarantee",
+    content: (
+      <List
+        items={[
+          "Report any issues within 24 hours after the cleaning (photo proof required).",
+          "Re-cleans are offered. We do not provide refunds or discounts.",
+          "Please don't clean or try to fix the issue yourself. We'll fix it promptly.",
+        ]}
+      />
+    ),
+  },
+  {
+    title: "Damage policy",
+    content: <List items={["Report any damage within 24 hours after the cleaning is completed (photo proof required)."]} />,
+  },
+  {
+    title: "Safety and health",
+    content: (
+      <List items={["We do not clean properties with rodents, pests, hazardous materials, or biohazards unless agreed in advance."]} />
+    ),
+  },
+  {
+    title: "Pet policy",
+    content: (
+      <List
+        items={[
+          "Pets must be securely put away before cleaners arrive.",
+          "We are not responsible for pets escaping from unsecured areas.",
+        ]}
+      />
+    ),
+  },
+  {
+    title: "Custom requests",
+    content: (
+      <List items={["Add-on services outside the standard scope must be requested at booking and carry an extra charge."]} />
+    ),
+  },
+];
+
+const serviceItems: AccordionItem[] = [
+  {
+    title: "Move-in/out cleaning",
+    content: (
+      <Scope
+        rooms={[
+          {
+            room: "All rooms",
+            tasks: [
+              "Dust/wipe ceiling fans, window ledges, furniture, blinds, baseboards",
+              "Empty trash cans; vacuum/mop floors",
+              "Wipe inside windowsills; dust/wash vents",
+            ],
+          },
+          {
+            room: "Kitchen",
+            tasks: [
+              "Countertops; appliance exteriors",
+              "Deep scrub sink and faucet",
+              "Wipe cabinets inside and out",
+              "Deep scrub stove inside and out",
+              "Microwave inside and out",
+            ],
+          },
+          {
+            room: "Bathrooms",
+            tasks: [
+              "Deep scrub shower and tub; deep clean toilet",
+              "Cabinets and vanity mirrors inside and out",
+              "Wipe mirrors/glass; dust/wash exhaust",
+            ],
+          },
+          { room: "Bedrooms", tasks: ["Dust/wipe furniture, shelves, and blinds", "Make bed"] },
+        ]}
+      />
+    ),
+    defaultOpen: true,
+  },
+  {
+    title: "Deep home cleaning",
+    content: (
+      <Scope
+        rooms={[
+          {
+            room: "All rooms",
+            tasks: [
+              "Dust/wipe ceiling fans, window ledges, furniture, blinds, baseboards",
+              "Empty trash cans; vacuum/mop floors",
+              "Vacuum between couch cushions and lint roll",
+            ],
+          },
+          {
+            room: "Kitchen",
+            tasks: [
+              "Countertops; appliance exteriors",
+              "Deep scrub sink and faucet",
+              "Wipe cabinets inside and out",
+              "Deep scrub stove inside and out",
+              "Microwave inside and out",
+            ],
+          },
+          {
+            room: "Bathrooms",
+            tasks: [
+              "Deep scrub shower and tub; deep clean toilet",
+              "Cabinets inside and out",
+              "Vanity mirrors inside and out; wipe mirrors/glass",
+            ],
+          },
+          { room: "Bedrooms", tasks: ["Dust/wipe furniture, shelves, and blinds", "Make bed"] },
+        ]}
+      />
+    ),
+  },
+  {
+    title: "General home cleaning",
+    content: (
+      <Scope
+        rooms={[
+          {
+            room: "All rooms",
+            tasks: [
+              "Dust ceiling fans, window ledges, furniture, blinds",
+              "Empty trash cans; vacuum/mop floors",
+              "Vacuum between couch cushions and lint roll",
+            ],
+          },
+          {
+            room: "Kitchen",
+            tasks: [
+              "Countertops; appliance exteriors",
+              "Deep scrub sink and faucet",
+              "Wipe cabinet exteriors",
+              "Deep scrub stove inside and out",
+              "Microwave inside and out",
+            ],
+          },
+          {
+            room: "Bathrooms",
+            tasks: [
+              "Deep scrub shower and tub; deep clean toilet",
+              "Cabinet and vanity mirror exteriors",
+              "Wipe mirrors/glass",
+            ],
+          },
+          { room: "Bedrooms", tasks: ["Dust furniture, shelves, and blinds", "Make bed"] },
+        ]}
+      />
+    ),
+  },
+];
+
+export function PoliciesPanel() {
+  const mid = Math.ceil(policyItems.length / 2);
+  return (
+    <div className="grid gap-x-14 lg:grid-cols-2">
+      <Accordion items={policyItems.slice(0, mid)} allowMultiple />
+      <Accordion items={policyItems.slice(mid)} allowMultiple className="-mt-px lg:mt-0" />
     </div>
   );
+}
+
+export function IncludedPanel() {
+  return <Accordion items={serviceItems} allowMultiple />;
 }
